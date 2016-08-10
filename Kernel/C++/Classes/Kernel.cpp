@@ -2,9 +2,10 @@
 #include "tinyxml\tinyxml.h"
 #include "DataStream.h"
 #include "log4z.h"
+#include <stdarg.h>
 using namespace zsummer::log4z;  
 
-typedef IModule* (*CreateModule)();
+typedef IModule* (*CreateModule)(IKernel *pKernel);
 
 Kernel::Kernel(const char *pConfig)
 {
@@ -71,12 +72,22 @@ bool Kernel::Init()
 		AddModuleByName(pChild->Attribute("Name"));
 		pChild = pChild->NextSiblingElement();
 	}
-
+	
+	std::list<UCHAR>::iterator it = m_listModuleID.begin();
+	for(;it != m_listModuleID.end(); ++it)
+	{
+		m_vecModule[*it]->Init();
+	}
 	return true;
 }
 
 void Kernel::Shut()
 {
+	std::list<UCHAR>::iterator it = m_listModuleID.begin();
+	for(;it != m_listModuleID.end(); ++it)
+	{
+		m_vecModule[*it]->Shut();
+	}
 	ILog4zManager::getRef().stop();  
 }
 
@@ -157,7 +168,7 @@ bool Kernel::AddModuleByName(const char *moduleName)
 		LOGFMTE("CreateModule symbol not found int module:%s", strName.c_str());
 		return false;
 	}
-	IModule *pModue = proc();
+	IModule *pModue = proc(this);
 	if(!pModue)
 	{
 		LOGFMTE("CreateModule failure:%s", strName.c_str());
@@ -206,11 +217,27 @@ INT64 Kernel::GetCuttentTime()
 
 IDataStream* Kernel::GetFileData(const char *pFileName)
 {
-	FILE *fp = fopen(pFileName, "rb");
-	if(!fp)
+	FILE *fp;
+	if(fopen_s(&fp, pFileName, "rb") != 0)
 	{
 		return NULL;
 	}
 
 	return new FileHandleDataStream(fp, DataStream::READ);
+}
+
+
+void Kernel::log_stream(int id, int level, const char *file, int line, const char *log)
+{
+	LOG_STREAM(id, level, file, line, log);
+}
+
+void Kernel::log_format(int id, int level, const char *file, int line, const char *logformat, ...)
+{
+	va_list ap; 
+	va_start(ap, logformat); 
+	char szBuffer[LOG4Z_LOG_BUF_SIZE];
+	vsprintf_s(szBuffer, logformat, ap);
+	va_end(ap);
+	LOG_STREAM(id, level, file, line, szBuffer);
 }

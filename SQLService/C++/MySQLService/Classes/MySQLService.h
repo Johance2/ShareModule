@@ -12,7 +12,7 @@ class MySQLService :
 	public DataBase
 {
 public:
-	MySQLService(IKernel *pKernel);
+	MySQLService();
 	virtual ~MySQLService(void);
 
 	// --------- 实现基类接口 ------------

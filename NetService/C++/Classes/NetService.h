@@ -8,7 +8,7 @@
 class NetService : public INetService
 {
 public:
-    NetService(IKernel *pKernel);
+    NetService();
     ~NetService();
 	
 	virtual void Init();
@@ -22,7 +22,6 @@ public:
 
 private:
 	std::list<NFINet*> m_listNet;
-	IKernel *m_pKernel;
 };
 
 #endif // __NetService_H__

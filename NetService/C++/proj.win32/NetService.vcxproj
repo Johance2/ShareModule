@@ -11,7 +11,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{2E248484-3DB8-4091-801D-2D6F2742632C}</ProjectGuid>
+    <ProjectGuid>{9DAE9920-C69E-4A1F-883D-E8C5298AFE23}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>NetService</RootNamespace>
   </PropertyGroup>

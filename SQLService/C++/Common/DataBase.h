@@ -42,7 +42,7 @@ public:
 class DataBase : public ISQLService, public CThread
 {
 public:
-	DataBase(IKernel *pKernel) { m_pKernel = pKernel;}
+	DataBase() {}
     ~DataBase(void) {};
 
 	virtual void Update(float fTime);
@@ -65,7 +65,6 @@ public:
 	virtual void Run();
 
 protected:
-    DataBase(void) {};
     virtual int OpenImpl(std::map<std::string, std::string> &strmap) = 0;
     char _param[1024];
 
@@ -75,5 +74,4 @@ private:
 
 	CLock m_ResponLock;
 	std::list<SQL_Respon*> m_listRespon;
-	IKernel *m_pKernel;
 };

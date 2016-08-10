@@ -31,4 +31,6 @@ public:
 	virtual void SetGetFileDataFun(GetFileDataFun fun) = 0;
 };
 
+extern IDBService *g_pDBService;
+
 #endif // __IDBService_H__

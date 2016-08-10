@@ -7,11 +7,12 @@
 	{\
 		strData = m_GetFileDataFun((CSVFILE_DIR + std::string(#name) + ".csv").c_str()); \
 	}\
-	if(m_pKernel)\
+	if(g_pKernel)\
 	{\
-		IDataStream *pStream = m_pKernel->GetFileData("");\
+		IDataStream *pStream = g_pKernel->GetFileData((CSVFILE_DIR + std::string(#name) + ".csv").c_str());\
+		if(pStream) {\
 		strData = pStream->getAsString().c_str();\
-		pStream->Release();\
+		pStream->Release();}else{strData = "";}\
 	}\
 	if (pTable->LoadFromMemory(strData.c_str()))\
 	{\
@@ -25,9 +26,8 @@
 	}\
 
 
-DBService::DBService(IKernel *pKernel)
+DBService::DBService()
 {
-	m_pKernel = pKernel;
 	m_GetFileDataFun = NULL;
 }
 
@@ -40,8 +40,7 @@ void DBService::Init()
     m_vecTables.resize(TT_Amount, NULL);
     DBTable *pTable = NULL;
     std::string strData;
-    LoadTable(ModelInfo, "ID");
-		
+    //LoadTable(ModelInfo, "ID");		
 }
 
 void DBService::Shut()

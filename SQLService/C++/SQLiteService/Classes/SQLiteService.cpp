@@ -7,8 +7,8 @@
 //-----------------------------------------------------
 // ππ‘Ï
 //-----------------------------------------------------
-SQLiteService::SQLiteService(IKernel *pKernel)
-	: DataBase(pKernel)
+SQLiteService::SQLiteService()
+	: DataBase()
 {
     _db = 0;
 }

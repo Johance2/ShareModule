@@ -7,7 +7,7 @@
 class DBService : public IDBService
 {
 public:
-    DBService(IKernel *pKernel);
+    DBService();
     ~DBService();
 	
 	virtual void Init();
@@ -28,9 +28,6 @@ public:
 
 private:
 	GetFileDataFun m_GetFileDataFun;
-
-protected:
-	IKernel *m_pKernel;
 };
 
 #define g_pDBService ((DBService*)GameEnv::GetGameModule(eGMIT_DBService))

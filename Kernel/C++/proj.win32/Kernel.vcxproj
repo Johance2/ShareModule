@@ -19,6 +19,7 @@
     <ClInclude Include="..\Interface\BaseType.h" />
     <ClInclude Include="..\Interface\IDataStream.h" />
     <ClInclude Include="..\Interface\IKernel.h" />
+    <ClInclude Include="..\Interface\ILog.h" />
     <ClInclude Include="..\Interface\IModule.h" />
   </ItemGroup>
   <ItemGroup>
@@ -32,7 +33,7 @@
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{2E248484-3DB8-4091-801D-2D6F2742632C}</ProjectGuid>
+    <ProjectGuid>{DBA766A8-5F1D-4671-A744-52DB450648CB}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>Kernel</RootNamespace>
   </PropertyGroup>

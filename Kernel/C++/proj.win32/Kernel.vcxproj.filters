@@ -39,6 +39,9 @@
     <ClInclude Include="..\Classes\tinyxml\tinyxml.h">
       <Filter>Classes\tinyxml</Filter>
     </ClInclude>
+    <ClInclude Include="..\Interface\ILog.h">
+      <Filter>Interface</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Classes\DataStream.cpp">

@@ -7,8 +7,8 @@
 //-----------------------------------------------------
 // ππ‘Ï
 //-----------------------------------------------------
-ODBCService::ODBCService(IKernel *pKernel)
-	: DataBase(pKernel)
+ODBCService::ODBCService()
+	: DataBase()
 {
 	hEnv = 0;
 	hstmt = 0;

@@ -47,6 +47,8 @@ public:
 	virtual IModule* FindModule(UCHAR ucID);
 	virtual INT64 GetCuttentTime();
 	virtual IDataStream *GetFileData(const char *pFileName);
+	virtual void log_stream(int id, int level, const char *file, int line, const char *log);
+	virtual void log_format(int id, int level, const char *file, int line, const char *logformat, ...);
 };
 
 #endif

@@ -14,7 +14,7 @@ class ODBCService :
 	public DataBase
 {
 public:
-	ODBCService(IKernel *pKernel);
+	ODBCService();
 	virtual ~ODBCService(void);
 
 	// --------- 实现基类接口 ------------

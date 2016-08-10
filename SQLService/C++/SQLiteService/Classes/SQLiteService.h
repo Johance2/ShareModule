@@ -12,7 +12,7 @@ class SQLiteService :
 	public DataBase
 {
 public:
-	SQLiteService(IKernel *pKernel);
+	SQLiteService();
 	virtual ~SQLiteService(void);
 
 	// --------- 实现基类接口 ------------

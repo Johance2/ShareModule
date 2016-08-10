@@ -44,5 +44,6 @@ public:
     virtual void ExcuteBinaryAsyncf(const char *cmd, SQLParam *param, SQL_Callback callback = 0, ...) = 0;
 };
 
+extern ISQLService *g_pSQLService;
 
 #endif

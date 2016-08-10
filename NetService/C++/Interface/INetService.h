@@ -17,4 +17,6 @@ public:
 	virtual NFINet* CreateServer(NET_RECEIVE_FUNCTOR handleRecieve, NET_EVENT_FUNCTOR handleEvent, const unsigned int nMaxClient, const unsigned short nPort, const int nCpuCount = 4) = 0;
 };
 
+extern INetService *g_pNetService;
+
 #endif // __INetService_H__

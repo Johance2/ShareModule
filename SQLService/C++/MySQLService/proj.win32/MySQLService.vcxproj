@@ -28,7 +28,7 @@
     <ClCompile Include="..\Classes\MySQLService.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{556BE32A-15F8-475A-AC8A-070C2DC09CA5}</ProjectGuid>
+    <ProjectGuid>{876E8F7D-2CD4-4809-8933-61DAB1E87F06}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>MySQLService</RootNamespace>
   </PropertyGroup>

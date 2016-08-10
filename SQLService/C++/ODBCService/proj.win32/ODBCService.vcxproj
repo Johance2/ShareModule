@@ -28,7 +28,7 @@
     <ClCompile Include="..\Classes\ODBCService.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{556BE32A-15F8-475A-AC8A-070C2DC09CA5}</ProjectGuid>
+    <ProjectGuid>{B03B0492-7BC9-4B5C-9730-AB6B86E1B265}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>ODBCService</RootNamespace>
   </PropertyGroup>

@@ -7,8 +7,8 @@
 //-----------------------------------------------------
 // ππ‘Ï
 //-----------------------------------------------------
-MySQLService::MySQLService(IKernel *pKernel)
-	: DataBase(pKernel)
+MySQLService::MySQLService()
+	: DataBase()
 {
     _connection = mysql_init(0);
 }

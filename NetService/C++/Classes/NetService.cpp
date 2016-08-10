@@ -1,8 +1,8 @@
 #include "NetService.h"
+#include "ILog.h"
 
-NetService::NetService(IKernel *pKernel)
+NetService::NetService()
 {
-	m_pKernel = pKernel;
 }
 
 NetService::~NetService()
@@ -11,6 +11,7 @@ NetService::~NetService()
 
 void NetService::Init()
 {
+	LOGI("NetService INIT");
 }
 
 void NetService::Shut()

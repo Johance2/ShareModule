@@ -1,0 +1,50 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DBService", "DBService\C++\proj.win32\DBService.vcxproj", "{2E248484-3DB8-4091-801D-2D6F2742632C}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "NetService", "NetService\C++\proj.win32\NetService.vcxproj", "{9DAE9920-C69E-4A1F-883D-E8C5298AFE23}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SQLiteService", "SQLService\C++\SQLiteService\proj.win32\SQLiteService.vcxproj", "{556BE32A-15F8-475A-AC8A-070C2DC09CA5}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ODBCService", "SQLService\C++\ODBCService\proj.win32\ODBCService.vcxproj", "{B03B0492-7BC9-4B5C-9730-AB6B86E1B265}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MySQLService", "SQLService\C++\MySQLService\proj.win32\MySQLService.vcxproj", "{876E8F7D-2CD4-4809-8933-61DAB1E87F06}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Kernel", "Kernel\C++\proj.win32\Kernel.vcxproj", "{DBA766A8-5F1D-4671-A744-52DB450648CB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2E248484-3DB8-4091-801D-2D6F2742632C}.Debug|Win32.ActiveCfg = Debug|Win32
+		{2E248484-3DB8-4091-801D-2D6F2742632C}.Debug|Win32.Build.0 = Debug|Win32
+		{2E248484-3DB8-4091-801D-2D6F2742632C}.Release|Win32.ActiveCfg = Release|Win32
+		{2E248484-3DB8-4091-801D-2D6F2742632C}.Release|Win32.Build.0 = Release|Win32
+		{9DAE9920-C69E-4A1F-883D-E8C5298AFE23}.Debug|Win32.ActiveCfg = Debug|Win32
+		{9DAE9920-C69E-4A1F-883D-E8C5298AFE23}.Debug|Win32.Build.0 = Debug|Win32
+		{9DAE9920-C69E-4A1F-883D-E8C5298AFE23}.Release|Win32.ActiveCfg = Release|Win32
+		{9DAE9920-C69E-4A1F-883D-E8C5298AFE23}.Release|Win32.Build.0 = Release|Win32
+		{556BE32A-15F8-475A-AC8A-070C2DC09CA5}.Debug|Win32.ActiveCfg = Debug|Win32
+		{556BE32A-15F8-475A-AC8A-070C2DC09CA5}.Debug|Win32.Build.0 = Debug|Win32
+		{556BE32A-15F8-475A-AC8A-070C2DC09CA5}.Release|Win32.ActiveCfg = Release|Win32
+		{556BE32A-15F8-475A-AC8A-070C2DC09CA5}.Release|Win32.Build.0 = Release|Win32
+		{B03B0492-7BC9-4B5C-9730-AB6B86E1B265}.Debug|Win32.ActiveCfg = Debug|Win32
+		{B03B0492-7BC9-4B5C-9730-AB6B86E1B265}.Debug|Win32.Build.0 = Debug|Win32
+		{B03B0492-7BC9-4B5C-9730-AB6B86E1B265}.Release|Win32.ActiveCfg = Release|Win32
+		{B03B0492-7BC9-4B5C-9730-AB6B86E1B265}.Release|Win32.Build.0 = Release|Win32
+		{876E8F7D-2CD4-4809-8933-61DAB1E87F06}.Debug|Win32.ActiveCfg = Debug|Win32
+		{876E8F7D-2CD4-4809-8933-61DAB1E87F06}.Debug|Win32.Build.0 = Debug|Win32
+		{876E8F7D-2CD4-4809-8933-61DAB1E87F06}.Release|Win32.ActiveCfg = Release|Win32
+		{876E8F7D-2CD4-4809-8933-61DAB1E87F06}.Release|Win32.Build.0 = Release|Win32
+		{DBA766A8-5F1D-4671-A744-52DB450648CB}.Debug|Win32.ActiveCfg = Debug|Win32
+		{DBA766A8-5F1D-4671-A744-52DB450648CB}.Debug|Win32.Build.0 = Debug|Win32
+		{DBA766A8-5F1D-4671-A744-52DB450648CB}.Release|Win32.ActiveCfg = Release|Win32
+		{DBA766A8-5F1D-4671-A744-52DB450648CB}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
