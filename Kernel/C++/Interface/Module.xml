@@ -1,0 +1,5 @@
+<Modules>
+	<Module Name="../../../NetService/C++/Interface/NetService"/>
+	<Module Name="../../../DBService/C++/Interface/DBService"/>
+	<Module Name="../../../SQLService/C++/Interface/MySQLService"/>
+</Modules>

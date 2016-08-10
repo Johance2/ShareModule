@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Classes">
+      <UniqueIdentifier>{79a317e2-4e3f-424c-81e4-4d708c30121f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Interface">
+      <UniqueIdentifier>{dccf09e5-1f00-4516-b778-c9ed5be5c9f0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Classes\tinyxml">
+      <UniqueIdentifier>{1f790162-e71f-47f8-b8b9-9b55a1b173f2}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\Interface\IKernel.h">
+      <Filter>Interface</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Interface\IModule.h">
+      <Filter>Interface</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Interface\IDataStream.h">
+      <Filter>Interface</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Interface\BaseType.h">
+      <Filter>Interface</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\DataStream.h">
+      <Filter>Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Kernel.h">
+      <Filter>Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\log4z.h">
+      <Filter>Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\tinyxml\tinystr.h">
+      <Filter>Classes\tinyxml</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\tinyxml\tinyxml.h">
+      <Filter>Classes\tinyxml</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\Classes\DataStream.cpp">
+      <Filter>Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Kernel.cpp">
+      <Filter>Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\log4z.cpp">
+      <Filter>Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\tinyxml\tinystr.cpp">
+      <Filter>Classes\tinyxml</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\tinyxml\tinyxml.cpp">
+      <Filter>Classes\tinyxml</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\tinyxml\tinyxmlerror.cpp">
+      <Filter>Classes\tinyxml</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\tinyxml\tinyxmlparser.cpp">
+      <Filter>Classes\tinyxml</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp" />
+  </ItemGroup>
+</Project>
