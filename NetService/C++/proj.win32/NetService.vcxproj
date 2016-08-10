@@ -1,0 +1,127 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{2E248484-3DB8-4091-801D-2D6F2742632C}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>NetService</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+    <TargetName>$(ProjectName)_d</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;HAVE_CONFIG_H;_CRT_SECURE_NO_WARNINGS;_DEBUG;_WINDOWS;_USRDLL;NetService_EXPORTS;HAVE_CONFIG_H;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>../Classes/libevent;../Classes/libevent/WIN32-Code;../Classes/libevent/include;../Classes/libevent/compat;..\..\..\Kernel\C++\Interface;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>../Classes/libevent</AdditionalLibraryDirectories>
+      <AdditionalDependencies>ws2_32.lib;shell32.lib;advapi32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+    <PostBuildEvent>
+      <Command>copy "$(TargetDir)$(TargetFileName)" ..\Interface</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;HAVE_CONFIG_H;_CRT_SECURE_NO_WARNINGS;NDEBUG;_WINDOWS;_USRDLL;NetService_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>../Classes/libevent;../Classes/libevent/WIN32-Code;../Classes/libevent/include;../Classes/libevent/compat;..\..\..\Kernel\C++\Interface;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalLibraryDirectories>../Classes/libevent</AdditionalLibraryDirectories>
+      <AdditionalDependencies>ws2_32.lib;shell32.lib;advapi32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+    <PostBuildEvent>
+      <Command>copy "$(TargetDir)$(TargetFileName)" ..\Interface</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\Classes\libevent\buffer.c" />
+    <ClCompile Include="..\Classes\libevent\bufferevent.c" />
+    <ClCompile Include="..\Classes\libevent\bufferevent_async.c" />
+    <ClCompile Include="..\Classes\libevent\bufferevent_filter.c" />
+    <ClCompile Include="..\Classes\libevent\bufferevent_pair.c" />
+    <ClCompile Include="..\Classes\libevent\bufferevent_ratelim.c" />
+    <ClCompile Include="..\Classes\libevent\bufferevent_sock.c" />
+    <ClCompile Include="..\Classes\libevent\buffer_iocp.c" />
+    <ClCompile Include="..\Classes\libevent\evdns.c" />
+    <ClCompile Include="..\Classes\libevent\event.c" />
+    <ClCompile Include="..\Classes\libevent\event_iocp.c" />
+    <ClCompile Include="..\Classes\libevent\event_tagging.c" />
+    <ClCompile Include="..\Classes\libevent\evmap.c" />
+    <ClCompile Include="..\Classes\libevent\evrpc.c" />
+    <ClCompile Include="..\Classes\libevent\evthread.c" />
+    <ClCompile Include="..\Classes\libevent\evutil.c" />
+    <ClCompile Include="..\Classes\libevent\evutil_rand.c" />
+    <ClCompile Include="..\Classes\libevent\http.c" />
+    <ClCompile Include="..\Classes\libevent\listener.c" />
+    <ClCompile Include="..\Classes\libevent\log.c" />
+    <ClCompile Include="..\Classes\libevent\signal.c" />
+    <ClCompile Include="..\Classes\libevent\strlcpy.c" />
+    <ClCompile Include="..\Classes\libevent\win32select.c" />
+    <ClCompile Include="..\Classes\NetService.cpp" />
+    <ClCompile Include="..\Classes\Interface.cpp" />
+    <ClCompile Include="..\Classes\NFCNet.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\Classes\libevent\event.h" />
+    <ClInclude Include="..\Classes\NetService.h" />
+    <ClInclude Include="..\Classes\NFCNet.h" />
+    <ClInclude Include="..\Interface\INetService.h" />
+    <ClInclude Include="..\Interface\NFINet.h" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

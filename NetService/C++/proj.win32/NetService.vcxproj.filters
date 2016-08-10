@@ -1,0 +1,117 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Classes">
+      <UniqueIdentifier>{79a317e2-4e3f-424c-81e4-4d708c30121f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Interface">
+      <UniqueIdentifier>{dccf09e5-1f00-4516-b778-c9ed5be5c9f0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Classes\libevent">
+      <UniqueIdentifier>{b8c1ac48-dabf-48f8-ada2-36a57f5e3889}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Classes\libevent\core">
+      <UniqueIdentifier>{2d9118e7-2fc0-4c65-a288-4dbf60d6af33}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Classes\libevent\extras">
+      <UniqueIdentifier>{d986cab2-a277-4f15-9541-e8d8ca32e675}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\Classes\NetService.cpp">
+      <Filter>Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Interface.cpp">
+      <Filter>Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\libevent\buffer.c">
+      <Filter>Classes\libevent\core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\libevent\win32select.c">
+      <Filter>Classes\libevent\core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\libevent\buffer_iocp.c">
+      <Filter>Classes\libevent\core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\libevent\bufferevent.c">
+      <Filter>Classes\libevent\core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\libevent\bufferevent_async.c">
+      <Filter>Classes\libevent\core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\libevent\bufferevent_filter.c">
+      <Filter>Classes\libevent\core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\libevent\bufferevent_pair.c">
+      <Filter>Classes\libevent\core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\libevent\bufferevent_ratelim.c">
+      <Filter>Classes\libevent\core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\libevent\bufferevent_sock.c">
+      <Filter>Classes\libevent\core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\libevent\event.c">
+      <Filter>Classes\libevent\core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\libevent\event_iocp.c">
+      <Filter>Classes\libevent\core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\libevent\evmap.c">
+      <Filter>Classes\libevent\core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\libevent\evthread.c">
+      <Filter>Classes\libevent\core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\libevent\evutil.c">
+      <Filter>Classes\libevent\core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\libevent\evutil_rand.c">
+      <Filter>Classes\libevent\core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\libevent\listener.c">
+      <Filter>Classes\libevent\core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\libevent\log.c">
+      <Filter>Classes\libevent\core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\libevent\signal.c">
+      <Filter>Classes\libevent\core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\libevent\strlcpy.c">
+      <Filter>Classes\libevent\core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\libevent\http.c">
+      <Filter>Classes\libevent\extras</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\libevent\evdns.c">
+      <Filter>Classes\libevent\extras</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\libevent\event_tagging.c">
+      <Filter>Classes\libevent\extras</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\libevent\evrpc.c">
+      <Filter>Classes\libevent\extras</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\NFCNet.cpp">
+      <Filter>Classes</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\Classes\NetService.h">
+      <Filter>Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Interface\INetService.h">
+      <Filter>Interface</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\libevent\event.h">
+      <Filter>Classes\libevent\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\NFCNet.h">
+      <Filter>Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Interface\NFINet.h">
+      <Filter>Interface</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
