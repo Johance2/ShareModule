@@ -11,7 +11,7 @@ public:
     NetService();
     ~NetService();
 	
-	virtual void Init();
+	virtual void Init(ModuleAttribute *pAttribute);
 	virtual void Shut();
 	virtual void Update(float fTime);
 	virtual UCHAR GetModuleID() { return NetServiceModuleID; }

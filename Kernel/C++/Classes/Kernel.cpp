@@ -43,6 +43,7 @@ bool Kernel::Init()
 	// 预创建 255个 槽位
 	m_vecModuleHandle.resize(255, 0);
 	m_vecModule.resize(255, 0);
+	m_vecModuleAttribute.resize(255, 0);
 
 	TiXmlDocument doc;
 
@@ -69,14 +70,25 @@ bool Kernel::Init()
 	TiXmlElement *pChild = pRoot->FirstChildElement();
 	while(pChild)
 	{
-		AddModuleByName(pChild->Attribute("Name"));
+		IModule *pModue = AddModuleByName(pChild->Attribute("Name"));
+		if(pModue)
+		{
+			ModuleAttribute *pModuleAttr = new ModuleAttribute();
+			TiXmlAttribute*pAttr = pChild->FirstAttribute();
+			while(pAttr)
+			{
+				(*pModuleAttr)[pAttr->Name()] = pAttr->Value() ? pAttr->Value() : "";
+				pAttr = pAttr->Next();
+			}
+			m_vecModuleAttribute[pModue->GetModuleID()]  = pModuleAttr;
+		}
 		pChild = pChild->NextSiblingElement();
 	}
 	
 	std::list<UCHAR>::iterator it = m_listModuleID.begin();
 	for(;it != m_listModuleID.end(); ++it)
 	{
-		m_vecModule[*it]->Init();
+		m_vecModule[*it]->Init(m_vecModuleAttribute[*it]);
 	}
 	return true;
 }
@@ -87,6 +99,7 @@ void Kernel::Shut()
 	for(;it != m_listModuleID.end(); ++it)
 	{
 		m_vecModule[*it]->Shut();
+		delete m_vecModuleAttribute[*it];
 	}
 	ILog4zManager::getRef().stop();  
 }
@@ -135,7 +148,7 @@ void Kernel::UpdateModule(float fTime)
 	}
 }
 
-bool Kernel::AddModuleByName(const char *moduleName)
+IModule* Kernel::AddModuleByName(const char *moduleName)
 {
 #ifdef WIN32
 	std::string strDllName = moduleName;
@@ -159,30 +172,30 @@ bool Kernel::AddModuleByName(const char *moduleName)
 	if(!hModule)
 	{
 		LOGFMTE("Module not found:%s", strName.c_str());
-		return false;
+		return NULL;
 	}
 	
 	CreateModule proc = (CreateModule)GetProcAddress(hModule, "CreateModule");
 	if(!proc)
 	{
 		LOGFMTE("CreateModule symbol not found int module:%s", strName.c_str());
-		return false;
+		return NULL;
 	}
 	IModule *pModue = proc(this);
 	if(!pModue)
 	{
 		LOGFMTE("CreateModule failure:%s", strName.c_str());
-		return false;
+		return NULL;
 	}
 #else
 #endif
 	if(AddModuleHandle(pModue, hModule))
 	{
 		LOGFMTI("LoadModule: ID:%d\t Name:%s\t\t\t", (int)pModue->GetModuleID(), strName.c_str());
-		return true;
+		return pModue;
 	}
 
-	return false;
+	return NULL;
 }
 
 IModule* Kernel::FindModule(UCHAR ucID)

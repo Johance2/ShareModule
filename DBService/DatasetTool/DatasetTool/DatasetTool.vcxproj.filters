@@ -1,0 +1,201 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="源文件">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="头文件">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="资源文件">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="third_party">
+      <UniqueIdentifier>{b4d2e312-6cb5-4ea9-9611-4eecafb7702e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="third_party\MiniExcelReader">
+      <UniqueIdentifier>{5d906cb7-1846-4f87-8305-f378c574ab7d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="third_party\tinyxml2">
+      <UniqueIdentifier>{deaced10-4f0f-4412-bc67-539c4885961d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="third_party\minizip">
+      <UniqueIdentifier>{d17cde4f-2072-4149-a80d-d6c8639fd50b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="third_party\zlib">
+      <UniqueIdentifier>{7e2a4ab8-9d9a-4911-84c4-41db1447de01}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Dataset">
+      <UniqueIdentifier>{355c1331-c02f-41c0-a197-c5b0a121327d}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="stdafx.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="third_party\MiniExcelReader\MiniExcelReader.h">
+      <Filter>third_party\MiniExcelReader</Filter>
+    </ClInclude>
+    <ClInclude Include="third_party\tinyxml2\tinyxml2.h">
+      <Filter>third_party\tinyxml2</Filter>
+    </ClInclude>
+    <ClInclude Include="third_party\minizip\crypt.h">
+      <Filter>third_party\minizip</Filter>
+    </ClInclude>
+    <ClInclude Include="third_party\minizip\ioapi.h">
+      <Filter>third_party\minizip</Filter>
+    </ClInclude>
+    <ClInclude Include="third_party\minizip\ioapi_buf.h">
+      <Filter>third_party\minizip</Filter>
+    </ClInclude>
+    <ClInclude Include="third_party\minizip\ioapi_mem.h">
+      <Filter>third_party\minizip</Filter>
+    </ClInclude>
+    <ClInclude Include="third_party\minizip\iowin32.h">
+      <Filter>third_party\minizip</Filter>
+    </ClInclude>
+    <ClInclude Include="third_party\minizip\unzip.h">
+      <Filter>third_party\minizip</Filter>
+    </ClInclude>
+    <ClInclude Include="third_party\minizip\zip.h">
+      <Filter>third_party\minizip</Filter>
+    </ClInclude>
+    <ClInclude Include="third_party\zlib\zutil.h">
+      <Filter>third_party\zlib</Filter>
+    </ClInclude>
+    <ClInclude Include="third_party\zlib\crc32.h">
+      <Filter>third_party\zlib</Filter>
+    </ClInclude>
+    <ClInclude Include="third_party\zlib\deflate.h">
+      <Filter>third_party\zlib</Filter>
+    </ClInclude>
+    <ClInclude Include="third_party\zlib\gzguts.h">
+      <Filter>third_party\zlib</Filter>
+    </ClInclude>
+    <ClInclude Include="third_party\zlib\inffast.h">
+      <Filter>third_party\zlib</Filter>
+    </ClInclude>
+    <ClInclude Include="third_party\zlib\inffixed.h">
+      <Filter>third_party\zlib</Filter>
+    </ClInclude>
+    <ClInclude Include="third_party\zlib\inflate.h">
+      <Filter>third_party\zlib</Filter>
+    </ClInclude>
+    <ClInclude Include="third_party\zlib\inftrees.h">
+      <Filter>third_party\zlib</Filter>
+    </ClInclude>
+    <ClInclude Include="third_party\zlib\trees.h">
+      <Filter>third_party\zlib</Filter>
+    </ClInclude>
+    <ClInclude Include="third_party\zlib\zconf.h">
+      <Filter>third_party\zlib</Filter>
+    </ClInclude>
+    <ClInclude Include="third_party\zlib\zlib.h">
+      <Filter>third_party\zlib</Filter>
+    </ClInclude>
+    <ClInclude Include="CommandBase.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Utility.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Dataset\DatasetCommand.h">
+      <Filter>Dataset</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="DatasetTool.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="third_party\MiniExcelReader\MiniExcelReader.cpp">
+      <Filter>third_party\MiniExcelReader</Filter>
+    </ClCompile>
+    <ClCompile Include="third_party\tinyxml2\tinyxml2.cpp">
+      <Filter>third_party\tinyxml2</Filter>
+    </ClCompile>
+    <ClCompile Include="third_party\minizip\ioapi.c">
+      <Filter>third_party\minizip</Filter>
+    </ClCompile>
+    <ClCompile Include="third_party\minizip\ioapi_buf.c">
+      <Filter>third_party\minizip</Filter>
+    </ClCompile>
+    <ClCompile Include="third_party\minizip\ioapi_mem.c">
+      <Filter>third_party\minizip</Filter>
+    </ClCompile>
+    <ClCompile Include="third_party\minizip\iowin32.c">
+      <Filter>third_party\minizip</Filter>
+    </ClCompile>
+    <ClCompile Include="third_party\minizip\unzip.c">
+      <Filter>third_party\minizip</Filter>
+    </ClCompile>
+    <ClCompile Include="third_party\minizip\zip.c">
+      <Filter>third_party\minizip</Filter>
+    </ClCompile>
+    <ClCompile Include="third_party\zlib\adler32.c">
+      <Filter>third_party\zlib</Filter>
+    </ClCompile>
+    <ClCompile Include="third_party\zlib\compress.c">
+      <Filter>third_party\zlib</Filter>
+    </ClCompile>
+    <ClCompile Include="third_party\zlib\crc32.c">
+      <Filter>third_party\zlib</Filter>
+    </ClCompile>
+    <ClCompile Include="third_party\zlib\deflate.c">
+      <Filter>third_party\zlib</Filter>
+    </ClCompile>
+    <ClCompile Include="third_party\zlib\gzclose.c">
+      <Filter>third_party\zlib</Filter>
+    </ClCompile>
+    <ClCompile Include="third_party\zlib\gzlib.c">
+      <Filter>third_party\zlib</Filter>
+    </ClCompile>
+    <ClCompile Include="third_party\zlib\gzread.c">
+      <Filter>third_party\zlib</Filter>
+    </ClCompile>
+    <ClCompile Include="third_party\zlib\gzwrite.c">
+      <Filter>third_party\zlib</Filter>
+    </ClCompile>
+    <ClCompile Include="third_party\zlib\infback.c">
+      <Filter>third_party\zlib</Filter>
+    </ClCompile>
+    <ClCompile Include="third_party\zlib\inffast.c">
+      <Filter>third_party\zlib</Filter>
+    </ClCompile>
+    <ClCompile Include="third_party\zlib\inflate.c">
+      <Filter>third_party\zlib</Filter>
+    </ClCompile>
+    <ClCompile Include="third_party\zlib\inftrees.c">
+      <Filter>third_party\zlib</Filter>
+    </ClCompile>
+    <ClCompile Include="third_party\zlib\trees.c">
+      <Filter>third_party\zlib</Filter>
+    </ClCompile>
+    <ClCompile Include="third_party\zlib\uncompr.c">
+      <Filter>third_party\zlib</Filter>
+    </ClCompile>
+    <ClCompile Include="third_party\zlib\zutil.c">
+      <Filter>third_party\zlib</Filter>
+    </ClCompile>
+    <ClCompile Include="CommandBase.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Utility.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Dataset\DatasetCommand.cpp">
+      <Filter>Dataset</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

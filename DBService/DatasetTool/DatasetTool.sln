@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DatasetTool", "DatasetTool\DatasetTool.vcxproj", "{BE6B6C92-D8CC-4823-AD6B-B8EB4A21DC6D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BE6B6C92-D8CC-4823-AD6B-B8EB4A21DC6D}.Debug|Win32.ActiveCfg = Debug|Win32
+		{BE6B6C92-D8CC-4823-AD6B-B8EB4A21DC6D}.Debug|Win32.Build.0 = Debug|Win32
+		{BE6B6C92-D8CC-4823-AD6B-B8EB4A21DC6D}.Release|Win32.ActiveCfg = Release|Win32
+		{BE6B6C92-D8CC-4823-AD6B-B8EB4A21DC6D}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

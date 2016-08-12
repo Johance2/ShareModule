@@ -21,8 +21,11 @@ public:
     virtual bool LoadFromMemory(const char *pData, int nCount = -1);
     void MakeKey(const char *pKey);
     void MakeKey(int nColIndex);
-    DBRecord *FindRecord(int nID);
-    DBRecord *FindRecord(const char *pKey);
+    virtual DBRecord *FindRecord(int nID);
+    virtual DBRecord *FindRecord(const char *pKey);
+	virtual IDBRecord *FindRecordByIndex(int nIndex);
+	virtual size_t GetRecountCount();
+
 
 protected:
     VecRow m_Record;
@@ -30,6 +33,8 @@ protected:
     int m_nKeyIndex;
     typedef std::map<std::string, DBRecord*> RECORD_STR_MAP;
     RECORD_STR_MAP m_RecordMap;
+    typedef std::vector<DBRecord*> RECORD_VEC;
+	RECORD_VEC m_RecordVec;
 
 private:
     std::string m_strFileName;

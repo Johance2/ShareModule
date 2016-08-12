@@ -7,6 +7,9 @@
     <Filter Include="Interface">
       <UniqueIdentifier>{dccf09e5-1f00-4516-b778-c9ed5be5c9f0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Interface\automake">
+      <UniqueIdentifier>{96027119-2e36-468b-bfe0-069d3465d213}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Classes\DBTable.cpp">
@@ -40,6 +43,9 @@
     </ClInclude>
     <ClInclude Include="..\Interface\IDBTable.h">
       <Filter>Interface</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Interface\automake\DBDefine.h">
+      <Filter>Interface\automake</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

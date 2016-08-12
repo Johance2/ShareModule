@@ -30,7 +30,7 @@ public:
 	virtual void UpdateModule(float fTime);
 
 protected:	
-    virtual bool AddModuleByName(const char *moduleName);
+    virtual IModule* AddModuleByName(const char *moduleName);
 
 private:
 	std::string m_strConfig;
@@ -40,6 +40,7 @@ private:
 private:
 	std::vector<MODULE_HANDLE> m_vecModuleHandle;
 	std::vector<IModule*> m_vecModule;
+	std::vector<ModuleAttribute*> m_vecModuleAttribute;
 	std::list<UCHAR> m_listModuleID;
 	
 public:

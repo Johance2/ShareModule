@@ -43,7 +43,7 @@ ODBCService::~ODBCService(void)
 //-----------------------------------------------------
 // ≥ı ºªØ
 //-----------------------------------------------------
-void ODBCService::Init()
+void ODBCService::Init(ModuleAttribute *pAttribute)
 {
 
 }

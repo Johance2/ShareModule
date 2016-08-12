@@ -8,7 +8,7 @@
 class INetService : public IModule
 {
 public:
-	virtual void Init() = 0;
+	virtual void Init(ModuleAttribute *pAttribute) = 0;
 	virtual void Shut() = 0;
 	virtual void Update(float fTime) = 0;
 

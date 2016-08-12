@@ -16,7 +16,7 @@ public:
 	virtual ~SQLiteService(void);
 
 	// --------- 实现基类接口 ------------
-	virtual void Init();
+	virtual void Init(ModuleAttribute *pAttribute);
 	virtual void Shut();
 	virtual void Update(float fTime);
 

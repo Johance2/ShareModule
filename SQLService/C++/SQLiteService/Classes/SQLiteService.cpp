@@ -25,7 +25,7 @@ SQLiteService::~SQLiteService(void)
 //-----------------------------------------------------
 // ≥ı ºªØ
 //-----------------------------------------------------
-void SQLiteService::Init()
+void SQLiteService::Init(ModuleAttribute *pAttribute)
 {
 
 }

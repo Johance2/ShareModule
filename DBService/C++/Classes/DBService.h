@@ -10,7 +10,7 @@ public:
     DBService();
     ~DBService();
 	
-	virtual void Init();
+	virtual void Init(ModuleAttribute *pAttribute);
 	virtual void Shut();
 	virtual void Update(float fTime);
 
@@ -29,7 +29,5 @@ public:
 private:
 	GetFileDataFun m_GetFileDataFun;
 };
-
-#define g_pDBService ((DBService*)GameEnv::GetGameModule(eGMIT_DBService))
 
 #endif // __DBService_H__

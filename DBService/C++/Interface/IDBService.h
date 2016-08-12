@@ -3,6 +3,7 @@
 
 #include "IDBTable.h"
 #include "IKernel.h"
+#include "automake/DBDefine.h"
 
 #define DBServiceModuleID 2
 
@@ -10,16 +11,10 @@ typedef const char* (*GetFileDataFun)(const char *pFileName);
 
 #define CSVFILE_DIR		"CSV"
 
-enum TableType
-{
-	TT_ModelInfo,	
-	TT_Amount
-};
-
 class IDBService : public IModule
 {
 public:
-	virtual void Init() = 0;
+	virtual void Init(ModuleAttribute *pAttribute) = 0;
 	virtual void Shut() = 0;
 	virtual void Update(float fTime) = 0;
 	virtual UCHAR GetModuleID() {return DBServiceModuleID;};

@@ -1,6 +1,10 @@
 #ifndef _IDBRecord_H_
 #define _IDBRecord_H_
 
+struct IDBRecordData
+{
+};
+
 class IDBRecord
 {
 public:

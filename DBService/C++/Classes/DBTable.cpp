@@ -164,6 +164,7 @@ void DBTable::MakeKey(int nColIndex)
     if (m_nKeyIndex == nColIndex)
         return;
     m_nKeyIndex = nColIndex;
+	m_RecordVec.resize(m_Record.size());
     for (size_t i = 2; i < m_Record.size(); i++)
     {
         DBRecord *pRecord = new DBRecord(&m_MapKey, m_Record[i]);
@@ -172,6 +173,7 @@ void DBTable::MakeKey(int nColIndex)
         {
             m_RecordMap[pKey] = pRecord;
         }
+		m_RecordVec[i-2] = pRecord;
     }
 }
 
@@ -189,4 +191,17 @@ DBRecord *DBTable::FindRecord(const char *pKey)
         return NULL;
 
     return it->second;
+}
+
+IDBRecord *DBTable::FindRecordByIndex(int nIndex)
+{
+	if(nIndex >= m_RecordVec.size())
+		return NULL;
+
+	return m_RecordVec[nIndex];
+}
+
+size_t DBTable::GetRecountCount()
+{
+	return m_RecordVec.size();
 }

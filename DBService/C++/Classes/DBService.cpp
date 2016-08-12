@@ -1,30 +1,6 @@
 #include "DBService.h"
 #include <assert.h>
-
-#define LoadTable(name, key) \
-    pTable = new DBTable(); \
-	if(m_GetFileDataFun)\
-	{\
-		strData = m_GetFileDataFun((CSVFILE_DIR + std::string(#name) + ".csv").c_str()); \
-	}\
-	if(g_pKernel)\
-	{\
-		IDataStream *pStream = g_pKernel->GetFileData((CSVFILE_DIR + std::string(#name) + ".csv").c_str());\
-		if(pStream) {\
-		strData = pStream->getAsString().c_str();\
-		pStream->Release();}else{strData = "";}\
-	}\
-	if (pTable->LoadFromMemory(strData.c_str()))\
-	{\
-		pTable->MakeKey(key);\
-		m_vecTables[TT_##name] = pTable; \
-	}\
-	else\
-	{\
-		assert(0);\
-		delete pTable;\
-	}\
-
+#include "ILog.h"
 
 DBService::DBService()
 {
@@ -35,12 +11,66 @@ DBService::~DBService()
 {
 }
 
-void DBService::Init()
+void DBService::Init(ModuleAttribute *pAttribute)
 {
-    m_vecTables.resize(TT_Amount, NULL);
-    DBTable *pTable = NULL;
-    std::string strData;
-    //LoadTable(ModelInfo, "ID");		
+	std::string strDBConfig;
+	std::string strCSVDir;
+	if(pAttribute)
+	{
+		strCSVDir = (*pAttribute)["csvDir"];
+		strDBConfig = strCSVDir  + (*pAttribute)["config"];
+	}
+
+	std::vector<std::string> vecNames;
+	int nTableCount = 0;
+	if(g_pKernel)
+	{
+		IDataStream *pStream = g_pKernel->GetFileData(strDBConfig.c_str());
+		if(pStream) 
+		{
+			pStream->read(&nTableCount, sizeof(nTableCount));
+			vecNames.resize(nTableCount);
+			for(int i = 0; i < nTableCount; i++)
+			{
+				char cLength;
+				char szName[255];
+				pStream->read(&cLength, sizeof(cLength));
+				pStream->read(szName, cLength);
+				szName[cLength] = 0;
+				vecNames[i] = szName;
+			}
+			pStream->Release();
+		}
+	}
+	
+    m_vecTables.resize(nTableCount, NULL);
+	for(int i = 0; i < nTableCount; i++)
+	{
+		DBTable *pTable = new DBTable(); 
+		std::string strData ;
+		if(g_pKernel)
+		{
+			IDataStream *pStream = g_pKernel->GetFileData((strCSVDir + vecNames[i] + ".csv").c_str());
+			if(pStream) 
+			{
+				strData = pStream->getAsString().c_str();
+				pStream->Release();
+			}
+		}
+		if (pTable->LoadFromMemory(strData.c_str()))
+		{
+			pTable->MakeKey(0);
+			m_vecTables[i] = pTable; 
+		}
+		else
+		{
+			assert(0);
+			delete pTable;
+		}
+	}
+	
+	LOGFMTI("NetService Load Table:%d", nTableCount);
+	
 }
 
 void DBService::Shut()

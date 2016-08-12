@@ -9,7 +9,7 @@ NetService::~NetService()
 {
 }
 
-void NetService::Init()
+void NetService::Init(ModuleAttribute *pAttribute)
 {
 	LOGI("NetService INIT");
 }

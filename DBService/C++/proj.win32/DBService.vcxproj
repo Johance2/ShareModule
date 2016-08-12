@@ -92,6 +92,7 @@
     <ClInclude Include="..\Classes\DBRecord.h" />
     <ClInclude Include="..\Classes\DBService.h" />
     <ClInclude Include="..\Classes\DBTable.h" />
+    <ClInclude Include="..\Interface\automake\DBDefine.h" />
     <ClInclude Include="..\Interface\IDBRecord.h" />
     <ClInclude Include="..\Interface\IDBService.h" />
     <ClInclude Include="..\Interface\IDBTable.h" />

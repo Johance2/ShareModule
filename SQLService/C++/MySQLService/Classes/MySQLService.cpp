@@ -25,7 +25,7 @@ MySQLService::~MySQLService(void)
 //-----------------------------------------------------
 // ≥ı ºªØ
 //-----------------------------------------------------
-void MySQLService::Init()
+void MySQLService::Init(ModuleAttribute *pAttribute)
 {
 
 }
