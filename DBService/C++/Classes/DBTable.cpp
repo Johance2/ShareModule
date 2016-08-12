@@ -93,6 +93,7 @@ bool DBTable::LoadFromMemory(const char *pData, int nCount/* = -1*/)
                     {
                         pStr = "";
                         pCol->push_back(pStr);
+                        pStr = m_Data + i + 1;
                     }
                     else if (*pStr != '"')
                     {
@@ -163,6 +164,32 @@ void DBTable::MakeKey(int nColIndex)
 {
     if (m_nKeyIndex == nColIndex)
         return;
+		
+	int nBlockSize = 0;
+	for(int i = 0; i < m_Record[1]->size(); i++)
+	{
+		const char *pType = (*m_Record[1])[i];
+		switch(pType[0])
+		{
+		case 'i':
+			{
+				nBlockSize += sizeof(int);
+			}
+			break;
+		case 's':
+			{
+				nBlockSize += sizeof(std::string);
+			}
+			break;
+		case 'f':
+			{				
+				nBlockSize += sizeof(float);
+			}
+			break;
+		}
+	}
+
+
     m_nKeyIndex = nColIndex;
 	m_RecordVec.resize(m_Record.size());
     for (size_t i = 2; i < m_Record.size(); i++)
@@ -174,6 +201,7 @@ void DBTable::MakeKey(int nColIndex)
             m_RecordMap[pKey] = pRecord;
         }
 		m_RecordVec[i-2] = pRecord;
+		pRecord->BuildBlock(*m_Record[1]);
     }
 }
 
@@ -200,6 +228,37 @@ IDBRecord *DBTable::FindRecordByIndex(int nIndex)
 
 	return m_RecordVec[nIndex];
 }
+
+IDBBlock* DBTable::FindData(int nID)
+{
+	IDBRecord *pRecord = FindRecord(nID);
+	if(pRecord)
+	{
+		return pRecord->Block();
+	}
+	return NULL;
+}
+
+IDBBlock* DBTable::FindData(const char *pKey)
+{
+	IDBRecord *pRecord = FindRecord(pKey);
+	if(pRecord)
+	{
+		return pRecord->Block();
+	}
+	return NULL;
+}
+
+IDBBlock* DBTable::FindDataByIndex(int nIndex)
+{
+	IDBRecord *pRecord = FindRecordByIndex(nIndex);
+	if(pRecord)
+	{
+		return pRecord->Block();
+	}
+	return NULL;
+}
+
 
 size_t DBTable::GetRecountCount()
 {

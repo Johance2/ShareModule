@@ -80,7 +80,7 @@ bool DatasetCommand::run()
 				"#ifndef _DBDefine_Automake_H_\r\n"
 				"#define _DBDefine_Automake_H_\r\n";
 
-			strDBDefine += "\r\n";
+			strDBDefine += "\r\nstruct IDBBlock{};\r\n";
 
 			strDBDefine += "enum TableType\r\n{\r\n";
 			for(auto itrProps = m_mapTable.begin(); itrProps != m_mapTable.end(); ++itrProps)
@@ -104,7 +104,7 @@ bool DatasetCommand::run()
 
 				strDBDefine += "struct DBData_";
 				strDBDefine += itrProps->first;
-				strDBDefine += " : IDBRecordData";
+				strDBDefine += " : IDBBlock";
 				
 				strDBDefine += "\r\n{\r\n";
 				
@@ -113,9 +113,12 @@ bool DatasetCommand::run()
 					strDBDefine += "\t";					
 					if(vecPropertys[i].strType == "string")
 					{
-						strDBDefine += "std::";		
+						strDBDefine += "const char*";		
 					}
-					strDBDefine += vecPropertys[i].strType;					
+					else
+					{
+						strDBDefine += vecPropertys[i].strType;					
+					}
 					strDBDefine += " ";
 					strDBDefine += vecPropertys[i].strName;
 					strDBDefine += ";//";
@@ -226,8 +229,8 @@ bool DatasetCommand::ParseXlsx(const char *pPath)
 		{
 			strHeader.pop_back();
 			strType.pop_back();
-			strHeader.append("\r\n");
-			strType.append("\r\n");
+			strHeader.append("\n");
+			strType.append("\n");
 
 			std::string strContent;
 			for(int row = CONTENT_ROW; row <= range.lastRow; row++)
@@ -249,7 +252,7 @@ bool DatasetCommand::ParseXlsx(const char *pPath)
 					}
 				}
 				strContent.pop_back();
-				strContent.append("\r\n");
+				strContent.append("\n");
 			}
 
 			CreatDir((char*)m_strCSVDir.c_str());

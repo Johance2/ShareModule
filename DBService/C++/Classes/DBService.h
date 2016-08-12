@@ -14,9 +14,11 @@ public:
 	virtual void Shut();
 	virtual void Update(float fTime);
 
-    DBTable *FindTable(int nType);
-    DBRecord *FindRecord(int nType, int nID);
-    DBRecord *FindRecord(int nType, const char *pKey);
+    virtual DBTable *FindTable(int nType);
+    virtual DBRecord *FindRecord(int nType, int nID);
+    virtual DBRecord *FindRecord(int nType, const char *pKey);
+    virtual IDBBlock *FindData(int nType, int nID);
+    virtual IDBBlock *FindData(int nType, const char *pKey);
 	
 public:
 	

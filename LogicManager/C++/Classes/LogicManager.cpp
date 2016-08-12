@@ -35,24 +35,42 @@ void LogicManager::Init(ModuleAttribute *pAttribute)
 	g_pDBService = (IDBService*)g_pKernel->FindModule(DBServiceModuleID);
 
 	IDBTable *pTable = g_pDBService->FindTable(TT_Example);
-	std::string strContent = "\n";
-	for(int i = 0; i < pTable->GetRecountCount(); i++)
 	{
-		IDBRecord *pRecord =  pTable->FindRecordByIndex(i);
-		if(pRecord)
+		for(int i = 0; i < pTable->GetRecountCount(); i++)
 		{
-			strContent += pRecord->Attribute("ID");
-			strContent += "\t";
-			strContent += pRecord->Attribute("strValue");
-			strContent += "\t";
-			strContent += pRecord->Attribute("IntValue");
-			strContent += "\t";
-			strContent += pRecord->Attribute("FloatValue");
-			strContent += "\n";
+			std::string strContent = "";
+			IDBRecord *pRecord =  pTable->FindRecordByIndex(i);
+			if(pRecord)
+			{
+				strContent += pRecord->Attribute("ID");
+				strContent += "\t";
+				strContent += pRecord->Attribute("strValue");
+				strContent += "\t";
+				strContent += pRecord->Attribute("IntValue");
+				strContent += "\t";
+				strContent += pRecord->Attribute("FloatValue");
+				strContent += "\n";
+			}
+			Utility_ConvertUtf8ToGBK(strContent);
+			LOGI(strContent.c_str());
 		}
 	}
-	Utility_ConvertUtf8ToGBK(strContent);
-	LOGI(strContent.c_str());
+	{
+		for(int i = 0; i < pTable->GetRecountCount(); i++)
+		{
+			std::string strContent = "";
+			DBData_Example *pData =  (DBData_Example*)pTable->FindDataByIndex(i);
+			if(pData)
+			{
+				char szTemp[1024];
+				sprintf(szTemp, "%d\t%s\t%d\t%f\t", pData->ID, pData->strValue, pData->IntValue, pData->FloatValue);
+				strContent += szTemp;
+				strContent += "\n";
+			}
+			Utility_ConvertUtf8ToGBK(strContent);
+			LOGI(strContent.c_str());
+		}
+	}
 }
 
 void LogicManager::Shut()

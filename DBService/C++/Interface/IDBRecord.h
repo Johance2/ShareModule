@@ -1,9 +1,7 @@
 #ifndef _IDBRecord_H_
 #define _IDBRecord_H_
 
-struct IDBRecordData
-{
-};
+struct IDBBlock;
 
 class IDBRecord
 {
@@ -13,6 +11,7 @@ public:
     virtual unsigned int AttributeUInt(const char *pKey) = 0;
     virtual float AttributeFloat(const char *pKey) = 0;
     virtual double AttributeDouble(const char *pKey) = 0;
+	virtual IDBBlock* Block() = 0;
 };
 
 #endif

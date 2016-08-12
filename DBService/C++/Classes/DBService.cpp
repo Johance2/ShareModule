@@ -97,6 +97,26 @@ DBRecord *DBService::FindRecord(int nType, const char *pKey)
     return m_vecTables[nType]->FindRecord(*pKey);
 }
 
+IDBBlock *DBService::FindData(int nType, int nID)
+{
+	IDBRecord *pRecord = FindRecord(nType, nID);
+	if(pRecord)
+	{
+		return pRecord->Block();
+	}
+	return NULL;
+}
+
+IDBBlock *DBService::FindData(int nType, const char *pKey)
+{
+	IDBRecord *pRecord = FindRecord(nType, pKey);
+	if(pRecord)
+	{
+		return pRecord->Block();
+	}
+	return NULL;
+}
+
 void DBService::SetGetFileDataFun(GetFileDataFun fun)
 {
 	m_GetFileDataFun = fun;

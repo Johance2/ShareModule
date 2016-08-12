@@ -24,6 +24,9 @@ public:
     virtual DBRecord *FindRecord(int nID);
     virtual DBRecord *FindRecord(const char *pKey);
 	virtual IDBRecord *FindRecordByIndex(int nIndex);
+    virtual IDBBlock* FindData(int nID);
+    virtual IDBBlock* FindData(const char *pKey);
+	virtual IDBBlock* FindDataByIndex(int nIndex);
 	virtual size_t GetRecountCount();
 
 

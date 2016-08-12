@@ -17,15 +17,18 @@ public:
     DBRecord(MapKey *pMapKey, VecCol *pData);
 	virtual ~DBRecord(void);
 
-    const char *Attribute(const char *pKey);
-    int AttributeInt(const char *pKey);
-    unsigned int AttributeUInt(const char *pKey);
-    float AttributeFloat(const char *pKey);
-    double AttributeDouble(const char *pKey);
+    virtual const char *Attribute(const char *pKey);
+    virtual int AttributeInt(const char *pKey);
+    virtual unsigned int AttributeUInt(const char *pKey);
+    virtual float AttributeFloat(const char *pKey);
+    virtual double AttributeDouble(const char *pKey);
+	virtual IDBBlock* Block();
+	void BuildBlock(VecCol &vecCol);
 
 protected:
     MapKey *m_pMapKey;
     VecCol *m_Data;
+	IDBBlock *m_pBlock;
 };
 
 #endif
