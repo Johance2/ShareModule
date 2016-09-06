@@ -9,6 +9,10 @@ public:
 	virtual IModule* FindModule(UCHAR ucID) = 0;
 	virtual IDataStream *GetFileData(const char *pFileName) = 0;
 	virtual INT64 GetCuttentTime() = 0;
+	virtual void ConvertUtf8ToGBK(std::string& strUtf8) = 0;
+	virtual void ConvertGBKToUtf8(std::string& strGBK) = 0;
+	virtual std::wstring ConvertUtf8ToWideChar(const std::string& strUtf8) = 0;
+	virtual std::string ConvertWideCharToUtf8(const std::wstring& strWideChar) = 0;
 
 	// log4z interface
 public:

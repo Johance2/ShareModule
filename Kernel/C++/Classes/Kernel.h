@@ -13,10 +13,10 @@ typedef HMODULE MODULE_HANDLE;
 class Kernel : public IKernel
 {
 public:
-	Kernel(const char *pConfig);
+	Kernel();
 	~Kernel();
 
-	int Run();
+	int Run(const char *pConfig);
 
 protected:
 	virtual bool Init();
@@ -35,6 +35,7 @@ protected:
 private:
 	std::string m_strConfig;
 	bool m_bWillQuit;
+	bool m_bHasConsole;
 
 
 private:
@@ -48,6 +49,10 @@ public:
 	virtual IModule* FindModule(UCHAR ucID);
 	virtual INT64 GetCuttentTime();
 	virtual IDataStream *GetFileData(const char *pFileName);
+	virtual void ConvertUtf8ToGBK(std::string& strUtf8);
+	virtual void ConvertGBKToUtf8(std::string& strGBK);
+	virtual std::wstring ConvertUtf8ToWideChar(const std::string& strUtf8);
+	virtual std::string ConvertWideCharToUtf8(const std::wstring& strWideChar);
 	virtual void log_stream(int id, int level, const char *file, int line, const char *log);
 	virtual void log_format(int id, int level, const char *file, int line, const char *logformat, ...);
 };

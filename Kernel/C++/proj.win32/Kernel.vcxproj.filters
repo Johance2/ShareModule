@@ -42,6 +42,7 @@
     <ClInclude Include="..\Interface\ILog.h">
       <Filter>Interface</Filter>
     </ClInclude>
+    <ClInclude Include="MiniDump.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Classes\DataStream.cpp">
@@ -66,5 +67,6 @@
       <Filter>Classes\tinyxml</Filter>
     </ClCompile>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="MiniDump.cpp" />
   </ItemGroup>
 </Project>

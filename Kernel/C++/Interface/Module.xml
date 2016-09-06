@@ -1,4 +1,4 @@
-<Modules>
+<Modules hasConsole="true">
 	<Module Name="../../../NetService/C++/Interface/NetService"/>
 	<Module Name="../../../DBService/C++/Interface/DBService" config="_index" csvDir="../../../DBService/C++/Interface/automake/csv/"/>
 	<Module Name="../../../SQLService/C++/Interface/MySQLService"/>

@@ -7,18 +7,19 @@ using namespace zsummer::log4z;
 
 typedef IModule* (*CreateModule)(IKernel *pKernel);
 
-Kernel::Kernel(const char *pConfig)
+Kernel::Kernel()
 {
-	m_strConfig = pConfig;
 	m_bWillQuit = false;
+	m_bHasConsole = true;
 }
 
 Kernel::~Kernel()
 {
 }
 
-int  Kernel::Run()
+int  Kernel::Run(const char *pConfig)
 {
+	m_strConfig = pConfig;
 	if(!Init())
 		return 0;
 
@@ -66,6 +67,17 @@ bool Kernel::Init()
 	{
 		LOGFMTE("config is empty:%s", m_strConfig.c_str());
 	}
+	if(pRoot->Attribute("hasConsole"))
+	{
+		m_bHasConsole = strcmp("true", pRoot->Attribute("hasConsole")) == 0;
+	}
+	if(m_bHasConsole)
+	{
+		AllocConsole();
+		freopen("CONIN$", "r", stdin);
+		freopen("CONOUT$", "w", stdout);
+		freopen("CONOUT$", "w", stderr);
+	}
 
 	TiXmlElement *pChild = pRoot->FirstChildElement();
 	while(pChild)
@@ -102,6 +114,8 @@ void Kernel::Shut()
 		delete m_vecModuleAttribute[*it];
 	}
 	ILog4zManager::getRef().stop();  
+	if(m_bHasConsole)
+		FreeConsole();
 }
 
 void Kernel::Update()
@@ -239,6 +253,80 @@ IDataStream* Kernel::GetFileData(const char *pFileName)
 	return new FileHandleDataStream(fp, DataStream::READ);
 }
 
+void Kernel::ConvertUtf8ToGBK(std::string& strUtf8)
+{
+    int len=MultiByteToWideChar(CP_UTF8, 0, strUtf8.c_str(), -1, NULL,0);
+    unsigned short * wszGBK = new unsigned short[len+1];        
+    memset(wszGBK, 0, len * 2 + 2);
+    MultiByteToWideChar(CP_UTF8, 0, (LPCCH)strUtf8.c_str(), -1, (LPWSTR)wszGBK, len);
+
+    len = WideCharToMultiByte(CP_ACP, 0, (LPWSTR)wszGBK, -1, NULL, 0, NULL, NULL);
+    char *szGBK=new char[len + 1];
+    memset(szGBK, 0, len + 1);
+    WideCharToMultiByte (CP_ACP, 0, (LPWSTR)wszGBK, -1, szGBK, len, NULL,NULL);
+
+    strUtf8 = szGBK;
+    delete[] szGBK;
+    delete[] wszGBK;
+}
+
+void Kernel::ConvertGBKToUtf8(std::string& strGBK)
+{
+    int len=MultiByteToWideChar(CP_ACP, 0, strGBK.c_str(), -1, NULL,0);
+    unsigned short * wszUtf8 = new unsigned short[len+1];
+    memset(wszUtf8, 0, len * 2 + 2);
+    MultiByteToWideChar(CP_ACP, 0, (LPCCH)strGBK.c_str(), -1, (LPWSTR)wszUtf8, len);        
+
+    len = WideCharToMultiByte(CP_UTF8, 0, (LPWSTR)wszUtf8, -1, NULL, 0, NULL, NULL);
+    char *szUtf8=new char[len + 1];
+    memset(szUtf8, 0, len + 1);        
+    WideCharToMultiByte (CP_UTF8, 0, (LPCWCH)wszUtf8, -1, szUtf8, len, NULL,NULL);
+
+    strGBK = szUtf8;
+    delete[] szUtf8;                
+    delete[] wszUtf8;   
+}
+
+std::wstring Kernel::ConvertUtf8ToWideChar(const std::string& strUtf8)
+{
+    std::wstring ret;
+    if (!strUtf8.empty())
+    {
+        int nNum = MultiByteToWideChar(CP_UTF8, 0, strUtf8.c_str(), -1, nullptr, 0);
+        if (nNum)
+        {
+            WCHAR* wideCharString = new WCHAR[nNum + 1];
+            wideCharString[0] = 0;
+
+            nNum = MultiByteToWideChar(CP_UTF8, 0, strUtf8.c_str(), -1, wideCharString, nNum + 1);
+
+            ret = wideCharString;
+            delete[] wideCharString;
+        }
+    }
+    return ret;
+}
+
+std::string Kernel::ConvertWideCharToUtf8(const std::wstring& strWideChar)
+{
+    std::string ret;
+    if (!strWideChar.empty())
+    {
+        int nNum = WideCharToMultiByte(CP_UTF8, 0, strWideChar.c_str(), -1, nullptr, 0, nullptr, FALSE);
+        if (nNum)
+        {
+            char* utf8String = new char[nNum + 1];
+            utf8String[0] = 0;
+
+            nNum = WideCharToMultiByte(CP_UTF8, 0, strWideChar.c_str(), -1, utf8String, nNum + 1, nullptr, FALSE);
+
+            ret = utf8String;
+            delete[] utf8String;
+        }
+    }
+
+    return ret;
+}
 
 void Kernel::log_stream(int id, int level, const char *file, int line, const char *log)
 {

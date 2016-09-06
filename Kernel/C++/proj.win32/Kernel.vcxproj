@@ -21,6 +21,7 @@
     <ClInclude Include="..\Interface\IKernel.h" />
     <ClInclude Include="..\Interface\ILog.h" />
     <ClInclude Include="..\Interface\IModule.h" />
+    <ClInclude Include="MiniDump.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Classes\DataStream.cpp" />
@@ -31,6 +32,7 @@
     <ClCompile Include="..\Classes\tinyxml\tinyxmlerror.cpp" />
     <ClCompile Include="..\Classes\tinyxml\tinyxmlparser.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="MiniDump.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{DBA766A8-5F1D-4671-A744-52DB450648CB}</ProjectGuid>
@@ -75,8 +77,9 @@
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;Kernel_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
-      <SubSystem>Console</SubSystem>
+      <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>$(ProjectDir)</AdditionalLibraryDirectories>
     </Link>
     <PostBuildEvent>
       <Command>copy "$(TargetDir)$(TargetFileName)" ..\Interface</Command>
@@ -93,10 +96,11 @@
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;Kernel_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
-      <SubSystem>Console</SubSystem>
+      <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalLibraryDirectories>./</AdditionalLibraryDirectories>
     </Link>
     <PostBuildEvent>
       <Command>copy "$(TargetDir)$(TargetFileName)" ..\Interface</Command>
