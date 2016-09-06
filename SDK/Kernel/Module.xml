@@ -1,0 +1,5 @@
+<Modules hasConsole="true">
+	<Module Name="../NetService/NetService"/>
+	<Module Name="../DBService/DBService" config="_index" csvDir="../DBService/automake/csv/"/>
+	<Module Name="../SQLService/MySQLService"/>
+</Modules>

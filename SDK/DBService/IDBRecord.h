@@ -1,0 +1,17 @@
+#ifndef _IDBRecord_H_
+#define _IDBRecord_H_
+
+struct IDBBlock;
+
+class IDBRecord
+{
+public:
+    virtual const char *Attribute(const char *pKey) = 0;
+    virtual int AttributeInt(const char *pKey) = 0;
+    virtual unsigned int AttributeUInt(const char *pKey) = 0;
+    virtual float AttributeFloat(const char *pKey) = 0;
+    virtual double AttributeDouble(const char *pKey) = 0;
+	virtual IDBBlock* Block() = 0;
+};
+
+#endif
