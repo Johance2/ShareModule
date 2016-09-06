@@ -1,0 +1,4 @@
+<Modules hasConsole="true">
+	<Module Name="../Example/PushBox/PushBox/C++/Interface/PushBox"/>
+	<Module Name="../Example/PushBox/Game/C++/Interface/Game"/>
+</Modules>
