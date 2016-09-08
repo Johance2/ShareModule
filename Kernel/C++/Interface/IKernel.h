@@ -3,10 +3,18 @@
 #include "IModule.h"
 #include "IDataStream.h"
 
+#ifdef _WIN32
+#include <windows.h>
+typedef HMODULE MODULE_HANDLE;
+#else
+#endif
+
 class IKernel
 {
 public:
-	virtual IModule* FindModule(UCHAR ucID) = 0;
+	virtual IModule* FindModule(UCHAR ucID) = 0;	
+	virtual MODULE_HANDLE FindModuleHandle(UCHAR ucID) = 0;	
+	virtual void Quit() = 0;
 	virtual IDataStream *GetFileData(const char *pFileName) = 0;
 	virtual INT64 GetCuttentTime() = 0;
 	virtual void ConvertUtf8ToGBK(std::string& strUtf8) = 0;

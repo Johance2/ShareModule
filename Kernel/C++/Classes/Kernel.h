@@ -4,12 +4,6 @@
 #include <vector>
 #include <list>
 
-#ifdef _WIN32
-#include <windows.h>
-typedef HMODULE MODULE_HANDLE;
-#else
-#endif
-
 class Kernel : public IKernel
 {
 public:
@@ -24,6 +18,7 @@ protected:
 	virtual void Update();
 
 public:
+	virtual void Quit();
     virtual bool AddModule(IModule *pModule);
     virtual bool AddModuleHandle(IModule *pModule, MODULE_HANDLE handle);
     virtual void RemoveModule(IModule *pModule);
@@ -47,6 +42,7 @@ private:
 public:
 	// ½Ó¿Ú
 	virtual IModule* FindModule(UCHAR ucID);
+	virtual MODULE_HANDLE FindModuleHandle(UCHAR ucID);
 	virtual INT64 GetCuttentTime();
 	virtual IDataStream *GetFileData(const char *pFileName);
 	virtual void ConvertUtf8ToGBK(std::string& strUtf8);

@@ -8,5 +8,4 @@ xcopy SQLService\C++\Interface SDK\SQLService\ /S/Y
 
 xcopy Kernel\C++\Interface\*.h SDK\Kernel\ /S/Y
 xcopy Kernel\C++\Interface\*.exe SDK\Kernel\ /S/Y
-xcopy Kernel\C++\Interface\*.xml SDK\Kernel\ /S/Y
 pause

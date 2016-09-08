@@ -126,6 +126,11 @@ void Kernel::Update()
 	UpdateModule(nElapseTime / 1000.0f);
 }
 
+void Kernel::Quit()
+{
+	m_bWillQuit = true;
+}
+
 bool Kernel::AddModule(IModule *pModule)
 {
 	AddModuleHandle(pModule, NULL);
@@ -215,6 +220,11 @@ IModule* Kernel::AddModuleByName(const char *moduleName)
 IModule* Kernel::FindModule(UCHAR ucID)
 {
 	return m_vecModule[ucID];
+}
+
+MODULE_HANDLE Kernel::FindModuleHandle(UCHAR ucID)
+{
+	return m_vecModuleHandle[ucID];
 }
 
 INT64 Kernel::GetCuttentTime()
