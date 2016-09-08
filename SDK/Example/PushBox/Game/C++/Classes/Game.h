@@ -63,6 +63,8 @@ protected:
 	int m_nGate;
 	// 当前走的步数
 	int m_nFoot;
+	// 数据路径
+	std::string m_strDataDir;
 };
 
 #define g_pGame ((Game*)GameEnv::GetGameModule(eGMIT_Game))

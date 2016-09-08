@@ -3,7 +3,7 @@
 
 #include "IKernel.h"
 
-#define GameModuleID 131
+#define GameModuleID 130
 
 #define MAP_COL (8)
 #define MAP_ROW (8)

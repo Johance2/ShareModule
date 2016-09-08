@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Game", "Game\C++\proj.win32\Game.vcxproj", "{A68D43C9-BE10-40FB-98D0-2F1ED4908185}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "PushBox", "PushBox\C++\proj.win32\PushBox.vcxproj", "{46794D84-0F68-431B-85D9-26F0EC2EB011}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Editor", "Editor\C++\proj.win32\Editor.vcxproj", "{2D2BC3E1-A602-4AF4-A1E1-D2437FD8A0A6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A68D43C9-BE10-40FB-98D0-2F1ED4908185}.Debug|Win32.ActiveCfg = Debug|Win32
+		{A68D43C9-BE10-40FB-98D0-2F1ED4908185}.Debug|Win32.Build.0 = Debug|Win32
+		{A68D43C9-BE10-40FB-98D0-2F1ED4908185}.Release|Win32.ActiveCfg = Release|Win32
+		{A68D43C9-BE10-40FB-98D0-2F1ED4908185}.Release|Win32.Build.0 = Release|Win32
+		{46794D84-0F68-431B-85D9-26F0EC2EB011}.Debug|Win32.ActiveCfg = Debug|Win32
+		{46794D84-0F68-431B-85D9-26F0EC2EB011}.Debug|Win32.Build.0 = Debug|Win32
+		{46794D84-0F68-431B-85D9-26F0EC2EB011}.Release|Win32.ActiveCfg = Release|Win32
+		{46794D84-0F68-431B-85D9-26F0EC2EB011}.Release|Win32.Build.0 = Release|Win32
+		{2D2BC3E1-A602-4AF4-A1E1-D2437FD8A0A6}.Debug|Win32.ActiveCfg = Debug|Win32
+		{2D2BC3E1-A602-4AF4-A1E1-D2437FD8A0A6}.Debug|Win32.Build.0 = Debug|Win32
+		{2D2BC3E1-A602-4AF4-A1E1-D2437FD8A0A6}.Release|Win32.ActiveCfg = Release|Win32
+		{2D2BC3E1-A602-4AF4-A1E1-D2437FD8A0A6}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

@@ -1,4 +1,4 @@
 <Modules hasConsole="true">
 	<Module Name="./Game" DataDir="./Data/"/>
-	<Module Name="./PushBox" Width="416" Height="460"/>
+	<Module Name="./Editor" Width="517" Height="460"/>
 </Modules>

@@ -1,4 +1,4 @@
-#include "PushBox.h"
+#include "Editor.h"
 #include <assert.h>
 #include "ILog.h"
 #include "resource.h"
@@ -10,24 +10,25 @@ LRESULT CALLBACK	WndProc(HWND, UINT, WPARAM, LPARAM);
 INT_PTR CALLBACK	About(HWND, UINT, WPARAM, LPARAM);
 
 IGame *g_pGame = NULL;
+int g_Type = 1;
 
-PushBox::PushBox()
+Editor::Editor()
 {
 }
 
-PushBox::~PushBox()
+Editor::~Editor()
 {
 }
 
-void PushBox::Init(ModuleAttribute *pAttribute)
-{	
+void Editor::Init(ModuleAttribute *pAttribute)
+{		
 	m_nWidth = atoi((*pAttribute)["Width"].c_str());
 	m_nHeight = atoi((*pAttribute)["Height"].c_str());
 	g_pGame = (IGame*)g_pKernel->FindModule(GameModuleID);
-	g_hInstance = m_hInstance = g_pKernel->FindModuleHandle(PushBoxModuleID);
+	g_hInstance = m_hInstance = g_pKernel->FindModuleHandle(EditorModuleID);
 	// 初始化全局字符串
 	LoadString(g_hInstance, IDS_APP_TITLE, m_szTitle, MAX_LOADSTRING);
-	LoadString(g_hInstance, IDC_PUSHBOX, m_szWindowClass, MAX_LOADSTRING);
+	LoadString(g_hInstance, IDC_EDITOR, m_szWindowClass, MAX_LOADSTRING);
 
 	ResigterClass();
 	if(!InitInstance())
@@ -35,14 +36,14 @@ void PushBox::Init(ModuleAttribute *pAttribute)
 		LOGFMTE("InitInstance Failuer!");
 		return ;
 	}
-	m_hAccelTable = LoadAccelerators(m_hInstance, MAKEINTRESOURCE(IDC_PUSHBOX));
+	m_hAccelTable = LoadAccelerators(m_hInstance, MAKEINTRESOURCE(IDC_EDITOR));
 }
 
-void PushBox::Shut()
+void Editor::Shut()
 {
 }
 
-void PushBox::Update(float fTime)
+void Editor::Update(float fTime)
 {
 	MSG msg;
     if (PeekMessage (&msg, NULL, 0, 0, PM_REMOVE)) 
@@ -61,7 +62,7 @@ void PushBox::Update(float fTime)
     } 
 }
 
-void PushBox::ResigterClass()
+void Editor::ResigterClass()
 {
 	WNDCLASSEX wcex;
 
@@ -72,17 +73,17 @@ void PushBox::ResigterClass()
 	wcex.cbClsExtra		= 0;
 	wcex.cbWndExtra		= 0;
 	wcex.hInstance		= m_hInstance;
-	wcex.hIcon			= LoadIcon(m_hInstance, MAKEINTRESOURCE(IDI_PUSHBOX));
+	wcex.hIcon			= LoadIcon(m_hInstance, MAKEINTRESOURCE(IDI_EDITOR));
 	wcex.hCursor		= LoadCursor(NULL, IDC_ARROW);
 	wcex.hbrBackground	= (HBRUSH)(COLOR_WINDOW+1);
-	wcex.lpszMenuName	= MAKEINTRESOURCE(IDC_PUSHBOX);
+	wcex.lpszMenuName	= MAKEINTRESOURCE(IDC_EDITOR);
 	wcex.lpszClassName	= m_szWindowClass;
 	wcex.hIconSm		= LoadIcon(wcex.hInstance, MAKEINTRESOURCE(IDI_SMALL));
 
 	RegisterClassEx(&wcex);
 }
 
-BOOL PushBox::InitInstance()
+BOOL Editor::InitInstance()
 {
    g_hWnd = CreateWindow(m_szWindowClass, m_szTitle, WS_OVERLAPPEDWINDOW,
       CW_USEDEFAULT, 0, m_nWidth, m_nHeight, NULL, NULL, m_hInstance, NULL);
@@ -121,6 +122,12 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 		case IDM_EXIT:
 			DestroyWindow(g_hWnd);
 			break;
+		case IDM_SAVE:
+			g_pGame->Save("editor.map");
+			break;
+		case IDM_LOAD:
+			g_pGame->Load("editor.map");
+			break;
 		default:
 			return DefWindowProc(hWnd, message, wParam, lParam);
 		}
@@ -129,38 +136,56 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 		{
 		}
 		break;
-	case WM_PAINT:
-		hdc = BeginPaint(hWnd, &ps);
-		// TODO: 在此添加任意绘图代码...
-		g_pGame->Draw(0, 0);
-		EndPaint(hWnd, &ps);
-		break;
-	case WM_KEYDOWN:
+	case WM_MOUSEMOVE:
 		{
-			switch(wParam)
+			if(!(wParam & (MK_LBUTTON|MK_RBUTTON)))
 			{
-			case VK_UP:
-				{
-					g_pGame->TurnUp();
-				}
-				break;
-			case VK_DOWN:
-				{
-					g_pGame->TurnDown();
-				}
-				break;
-			case VK_LEFT:
-				{
-					g_pGame->TurnLeft();
-				}
-				break;
-			case VK_RIGHT:
-				{
-					g_pGame->TurnRight();
-				}
 				break;
 			}
 		}
+	case WM_LBUTTONDOWN:
+		{
+			int nX = LOWORD(lParam);
+			int nY = HIWORD(lParam);
+
+			if(nX < 50 && nX > 0 && nY < 250 && nY > 0)
+			{
+				int nIndex = nY / 50;
+
+				if(nIndex != 5)
+				{
+					g_Type = nIndex;
+				}
+				InvalidateRect(hWnd, NULL, FALSE);
+			}
+			else if(nX > MAP_X && nX < (MAP_X+MAP_WIDTH) && nY > MAP_Y && nY < (MAP_Y+MAP_HEIGHT))
+			{
+				int nCol = (nX - MAP_X) / TILE_WIDTH;
+				int nRow = (nY - MAP_Y) / TILE_HEIGHT;
+
+				int nType = g_Type;
+				if(wParam & MK_RBUTTON)
+				{
+					nType = 0;
+				}
+
+				g_pGame->Change(nCol, nRow, nType);
+			}
+		}
+		break;
+	case WM_PAINT:
+		hdc = BeginPaint(hWnd, &ps);
+
+		for(int i = 0; i < 5; i++)
+		{			
+			g_pGame->DrawItem(0, TILE_HEIGHT*i, i);
+		}
+		
+		g_pGame->DrawItem(0, TILE_HEIGHT*6, g_Type);
+
+		g_pGame->Draw(MAP_X, MAP_Y);
+
+		EndPaint(hWnd, &ps);
 		break;
 	case WM_DESTROY:
 		PostQuitMessage(0);

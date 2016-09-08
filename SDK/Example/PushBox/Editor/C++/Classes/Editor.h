@@ -1,16 +1,18 @@
-#ifndef __PushBox_H__
-#define __PushBox_H__
+#ifndef __Editor_H__
+#define __Editor_H__
 
-#include "../Interface/IPushBox.h"
+#include "../Interface/IEditor.h"
 #include <windows.h>
 
 #define MAX_LOADSTRING 100
+#define MAP_X (100)
+#define MAP_Y (0)
 
-class PushBox : public IPushBox
+class Editor : public IEditor
 {
 public:
-    PushBox();
-    ~PushBox();
+    Editor();
+    ~Editor();
 	
 	virtual void Init(ModuleAttribute *pAttribute);
 	virtual void Shut();
@@ -29,6 +31,6 @@ private:
 	int m_nHeight;
 };
 
-#define g_pPushBox ((PushBox*)PushBoxEnv::GetPushBoxModule(eGMIT_PushBox))
+#define g_pEditor ((Editor*)EditorEnv::GetEditorModule(eGMIT_Editor))
 
-#endif // __PushBox_H__
+#endif // __Editor_H__

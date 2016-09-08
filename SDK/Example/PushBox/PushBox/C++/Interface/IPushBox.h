@@ -3,7 +3,7 @@
 
 #include "IKernel.h"
 
-#define PushBoxModuleID 130
+#define PushBoxModuleID 131
 
 
 class IPushBox : public IModule

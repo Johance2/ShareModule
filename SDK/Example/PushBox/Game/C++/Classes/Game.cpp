@@ -14,8 +14,12 @@ Game::~Game()
 
 void Game::Init(ModuleAttribute *pAttribute)
 {	
-	if(m_hWnd == NULL)
-		return ;
+	m_strDataDir = (*pAttribute)["DataDir"];
+}
+
+void Game::SetHWND(HWND hWnd)
+{	
+	m_hWnd = hWnd;
 
 	// 窗口DC
 	m_hDC = GetDC(m_hWnd);
@@ -27,14 +31,9 @@ void Game::Init(ModuleAttribute *pAttribute)
 	// 图片DC
 	m_hImgDC = CreateCompatibleDC(m_hDC);;
 	// 图片位图
-	m_hImgBmp = (HBITMAP)LoadImageA(NULL, "tile.bmp", IMAGE_BITMAP, 250, 50, LR_LOADFROMFILE);
+	m_hImgBmp = (HBITMAP)LoadImageA(NULL, (m_strDataDir + "/tile.bmp").c_str(), IMAGE_BITMAP, 250, 50, LR_LOADFROMFILE);
 	SelectObject(m_hImgDC, m_hImgBmp);
 	InvalidateRect(m_hWnd, NULL, FALSE);
-}
-
-void Game::SetHWND(HWND hWnd)
-{	
-	m_hWnd = hWnd;
 }
 
 void Game::Shut()
@@ -84,9 +83,11 @@ void Game::Draw(int nX, int nY)
 // 加载数据
 void Game::Load(const char *pName)
 {
-	FILE *fp = fopen(pName, "rb");
+	std::string mapFile = m_strDataDir + "/" + pName;
+	FILE *fp = fopen(mapFile.c_str(), "rb");
 	if(fp == NULL)
 	{
+		LOGFMTE("Load Map %s Failure!", mapFile.c_str());
 		return ;
 	}
 
@@ -122,7 +123,7 @@ void Game::Load(int nGate)
 // 保存数据
 void Game::Save(const char *pName)
 {
-	FILE *fp = fopen(pName, "wb");
+	FILE *fp = fopen((m_strDataDir + "/" + pName).c_str(), "wb");
 	if(fp == NULL)
 	{
 		return ;
