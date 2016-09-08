@@ -1,0 +1,4 @@
+<Modules hasConsole="true">
+	<Module Name="./PushBox"/>
+	<Module Name="./Game"/>
+</Modules>
