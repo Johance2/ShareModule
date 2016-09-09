@@ -10,4 +10,14 @@
     <LocalDebuggerWorkingDirectory>D:\Github\Johance2\ShareModule\SDK\Example\PushBox\RunTime</LocalDebuggerWorkingDirectory>
     <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LocalDebuggerCommand>D:\Github\Johance2\ShareModule\SDK\Example\PushBox\RunTime\Kernel_d.exe</LocalDebuggerCommand>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LocalDebuggerCommandArguments>Editor.xml</LocalDebuggerCommandArguments>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LocalDebuggerWorkingDirectory>D:\Github\Johance2\ShareModule\SDK\Example\PushBox\RunTime</LocalDebuggerWorkingDirectory>
+    <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
+  </PropertyGroup>
 </Project>
