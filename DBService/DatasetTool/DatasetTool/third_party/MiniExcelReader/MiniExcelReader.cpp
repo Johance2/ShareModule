@@ -223,7 +223,8 @@ namespace MiniExcelReader {
 				while (r)
 				{
 					t = r->FirstChildElement("t");
-					value += t->GetText();
+					if(t->GetText())
+						value += t->GetText();
 					r = r->NextSiblingElement("r");
 				}
 				_sharedString.push_back(value);
