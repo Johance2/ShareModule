@@ -235,20 +235,35 @@ bool DatasetCommand::ParseXlsx(const char *pPath)
 			std::string strContent;
 			for(int row = CONTENT_ROW; row <= range.lastRow; row++)
 			{
+				// 先检测这一行有没有数据需要导出
+				bool bHasData = false;
 				for(int col = 2; col <= range.lastCol; col++)
 				{
 					auto cell = sheet.getCell(row, col);
 					if(vecExportFlag[col-2])
 					{
-						std::string strValue = cell->value;
-						Utility_ReplaceString(strValue, "\"", "\"\"");
-						if(strValue.find_first_of(',') != -1)
+						bHasData = cell->value.size() > 0;
+						if(bHasData)
+							break;
+					}
+				}
+				if(bHasData)
+				{
+					for(int col = 2; col <= range.lastCol; col++)
+					{
+						auto cell = sheet.getCell(row, col);
+						if(vecExportFlag[col-2])
 						{
-							strValue.insert(0, "\"");
-							strValue.push_back('\"');
+							std::string strValue = cell->value;
+							Utility_ReplaceString(strValue, "\"", "\"\"");
+							if(strValue.find_first_of(',') != -1)
+							{
+								strValue.insert(0, "\"");
+								strValue.push_back('\"');
+							}
+							strContent.append(strValue);
+							strContent.append(",");
 						}
-						strContent.append(strValue);
-						strContent.append(",");
 					}
 				}
 				strContent.pop_back();
