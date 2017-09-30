@@ -35,5 +35,6 @@ private:
 	typedef std::map<std::string, VecProperty> MapTable;
 
 	MapTable m_mapTable;
+	MapTable m_mapTableEnum;
 };
 

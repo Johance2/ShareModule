@@ -90,12 +90,45 @@ bool DatasetCommand::run()
 					continue;
 
 				strDBDefine += "\tTT_";
-				strDBDefine += itrProps->first;
+				std::string strName = itrProps->first;
+				strDBDefine += strupr((char*)strName.c_str());
 				strDBDefine += ",\r\n";
 			}
 
 			strDBDefine += "\tTT_Amount";
 			strDBDefine += "\r\n};\r\n\r\n";
+
+			
+			for(auto itrProps = m_mapTableEnum.begin(); itrProps != m_mapTableEnum.end(); ++itrProps)
+			{
+				auto vecPropertys = itrProps->second;
+				if(vecPropertys.size() == 0)
+					continue;
+				std::string strTableName = itrProps->first.c_str();
+				strupr((char*)strTableName.c_str());
+				std::string strEnumName = "EDT_";
+				strEnumName+=strTableName;
+
+				strDBDefine += "enum EDT_";
+				strDBDefine += strTableName;
+				strDBDefine += "\r\n{\r\n";
+				
+				for(auto i = 0; i < vecPropertys.size(); i++)
+				{
+					auto &enumData = vecPropertys[i];
+					strDBDefine += "\tEDT_";
+					strDBDefine += strTableName;
+					strDBDefine += "_";
+					strDBDefine += strupr((char*)enumData.strName.c_str());
+					strDBDefine += "\t = \t";
+					strDBDefine += strupr((char*)enumData.strType.c_str());
+					strDBDefine += ", //";
+					strDBDefine += strupr((char*)enumData.strDesc.c_str());
+					strDBDefine += "\r\n";
+				}
+				strDBDefine += "};\r\n\r\n";
+			}
+
 			for(auto itrProps = m_mapTable.begin(); itrProps != m_mapTable.end(); ++itrProps)
 			{
 				auto vecPropertys = itrProps->second;
@@ -182,7 +215,7 @@ bool DatasetCommand::ParseXlsx(const char *pPath)
 		auto &range = sheet.getDimension();
 
 		std::string sheetName = strXlsxName;
-		if(sheets.size() > 1)
+		if(sheets.size() > 1 && sheetName != sheet.getName())
 		{
 			sheetName.append("_");
 			sheetName.append(sheet.getName());
@@ -192,18 +225,32 @@ bool DatasetCommand::ParseXlsx(const char *pPath)
 		// 获取导出标记
 		std::vector<bool> vecExportFlag;
 		vecExportFlag.resize(sheet.getDimension().lastCol-1);
+		bool bHasExport = false;
+		int nMaxCol;
 		for(int col = 2; col <= range.lastCol; col++)
 		{
 			auto cell = sheet.getCell(4, col);
+			if(cell == NULL)
+				break;
 			int nTag = atoi(cell->value.c_str());
-			vecExportFlag[col-2] = nTag & m_nTag;
+			vecExportFlag[col-2] = nTag == 0 || nTag == m_nTag;
+			if(!bHasExport)
+				bHasExport = vecExportFlag[col-2];
+
+			nMaxCol = col;
 		}
 
+		if(!bHasExport)
+		{
+			continue ;
+		}
 		auto &vecProperty = m_mapTable[sheetName];
+		auto &vecEnum = m_mapTableEnum[sheetName];
 
 		std::string strHeader;
 		std::string strType;
-		for(int col = 2; col <= range.lastCol; col++)
+
+		for(int col = 2; col <= nMaxCol; col++)
 		{
 			if(vecExportFlag[col-2])
 			{
@@ -225,7 +272,7 @@ bool DatasetCommand::ParseXlsx(const char *pPath)
 		}
 
 		// 导出csv
-		if(m_strCSVDir.size() > 0)
+		if(bHasExport && m_strCSVDir.size() > 0)
 		{
 			strHeader.pop_back();
 			strType.pop_back();
@@ -235,9 +282,27 @@ bool DatasetCommand::ParseXlsx(const char *pPath)
 			std::string strContent;
 			for(int row = CONTENT_ROW; row <= range.lastRow; row++)
 			{
-				// 先检测这一行有没有数据需要导出
+				auto cellEnum = sheet.getCell(row, 1);
+				if(cellEnum && cellEnum->value.size() > 0)
+				{
+					DBData enumData;
+					enumData.strName = cellEnum->value;
+					cellEnum = sheet.getCell(row, 2);
+					if(cellEnum && cellEnum->value.size() > 0)
+					{
+						enumData.strType = cellEnum->value;
+					}
+					cellEnum = sheet.getCell(row, 3);
+					if(cellEnum && cellEnum->value.size() > 0)
+					{
+						enumData.strDesc = cellEnum->value;
+					}
+					vecEnum.push_back(enumData);
+				}
+
 				bool bHasData = false;
-				for(int col = 2; col <= range.lastCol; col++)
+				
+				for(int col = 2; col <= nMaxCol; col++)
 				{
 					auto cell = sheet.getCell(row, col);
 					if(vecExportFlag[col-2])
@@ -247,9 +312,10 @@ bool DatasetCommand::ParseXlsx(const char *pPath)
 							break;
 					}
 				}
+
 				if(bHasData)
 				{
-					for(int col = 2; col <= range.lastCol; col++)
+					for(int col = 2; col <= nMaxCol; col++)
 					{
 						auto cell = sheet.getCell(row, col);
 						if(vecExportFlag[col-2])
@@ -265,9 +331,9 @@ bool DatasetCommand::ParseXlsx(const char *pPath)
 							strContent.append(",");
 						}
 					}
+					strContent.pop_back();
+					strContent.append("\n");
 				}
-				strContent.pop_back();
-				strContent.append("\n");
 			}
 
 			CreatDir((char*)m_strCSVDir.c_str());
